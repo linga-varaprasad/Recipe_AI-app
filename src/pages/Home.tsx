@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { FeaturedRecipes } from "@/components/recipes/FeaturedRecipes";
 import { PersonalizedMealPlans } from "@/components/recipes/PersonalizedMealPlans";
+import { DailyQuote } from "@/components/quotes/DailyQuote";
 import { Button } from "@/components/ui/button";
 import { Bell, Settings, Utensils, ShoppingCart, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -22,6 +23,8 @@ export default function Home() {
         </div>
       </header>
 
+      <DailyQuote />
+      
       <FeaturedRecipes />
       
       <PersonalizedMealPlans />
@@ -33,7 +36,7 @@ export default function Home() {
             Meal Plan
           </Button>
         </Link>
-        <Link to="/grocery">
+        <Link to="/grocery-list">
           <Button variant="secondary" className="w-full">
             <ShoppingCart className="mr-2" />
             Grocery
