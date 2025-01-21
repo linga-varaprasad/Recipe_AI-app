@@ -1,4 +1,4 @@
-import { Home, Search, Heart, User } from "lucide-react";
+import { Home, Search, Camera, Heart, User } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 export const BottomNav = () => {
@@ -26,6 +26,15 @@ export const BottomNav = () => {
         >
           <Search size={24} />
           <span className="text-xs mt-1">Search</span>
+        </Link>
+        <Link
+          to="/camera"
+          className={`flex flex-col items-center ${
+            isActive("/camera") ? "text-primary-foreground" : "text-gray-400"
+          }`}
+        >
+          <Camera size={24} />
+          <span className="text-xs mt-1">Camera</span>
         </Link>
         <Link
           to="/favorites"
