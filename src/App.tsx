@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Home from "./pages/Home";
+import Search from "./pages/Search";
 import Preferences from "./pages/Preferences";
 import { BottomNav } from "./components/navigation/BottomNav";
 import { useLocation } from "react-router-dom";
@@ -20,6 +21,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/preferences" element={<Preferences />} />
       </Routes>
       {showNav && <BottomNav />}
