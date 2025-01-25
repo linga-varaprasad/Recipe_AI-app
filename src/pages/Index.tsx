@@ -32,7 +32,7 @@ const Index = () => {
     setIsLoading(true);
     try {
       if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email: formData.email,
           password: formData.password,
           options: {
@@ -42,10 +42,13 @@ const Index = () => {
           },
         });
         if (error) throw error;
-        toast({
-          title: "Success!",
-          description: "Please check your email to verify your account.",
-        });
+        if (data.user) {
+          toast({
+            title: "Success!",
+            description: "Account created successfully.",
+          });
+          navigate("/home");
+        }
       } else {
         const { error } = await supabase.auth.signInWithPassword({
           email: formData.email,
