@@ -32,7 +32,8 @@ const Index = () => {
     setIsLoading(true);
     try {
       if (isSignUp) {
-        const { data, error } = await supabase.auth.signUp({
+        // For sign up, we'll use signInWithPassword right after signUp
+        const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
           email: formData.email,
           password: formData.password,
           options: {
@@ -41,11 +42,21 @@ const Index = () => {
             },
           },
         });
-        if (error) throw error;
-        if (data.user) {
+        
+        if (signUpError) throw signUpError;
+
+        // Immediately sign in after successful registration
+        if (signUpData.user) {
+          const { error: signInError } = await supabase.auth.signInWithPassword({
+            email: formData.email,
+            password: formData.password,
+          });
+          
+          if (signInError) throw signInError;
+          
           toast({
             title: "Success!",
-            description: "Account created successfully.",
+            description: "Account created and logged in successfully.",
           });
           navigate("/home");
         }
